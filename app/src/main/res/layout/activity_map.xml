@@ -7,6 +7,8 @@
         android:layout_height="match_parent"
         android:screenOrientation="landscape"
         tools:context=".MapActivity">
+
+
     <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" app:srcCompat="@drawable/campus_map"
@@ -28,11 +30,13 @@
             android:id="@+id/rugglesButton" app:layout_constraintStart_toStartOf="parent"
             android:layout_marginStart="112dp" android:layout_marginTop="204dp"
             app:layout_constraintTop_toTopOf="parent"/>
-    <Button
-            android:text="Food Filter"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/foodFilter" android:layout_marginTop="16dp"
-            app:layout_constraintTop_toTopOf="parent" app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginStart="36dp"/>
+
+    <fragment android:name="com.example.numaps.FilteritemFragment"
+              android:id="@+id/headlines_fragment"
+              android:layout_width="725dp"
+              android:layout_height="68dp" android:layout_marginEnd="4dp"
+              app:layout_constraintEnd_toEndOf="@+id/map"
+              app:layout_constraintTop_toTopOf="@+id/map" app:layout_constraintStart_toStartOf="parent"
+              android:layout_marginStart="8dp" app:layout_constraintHorizontal_bias="0.0"
+              android:layout_marginTop="120dp"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
