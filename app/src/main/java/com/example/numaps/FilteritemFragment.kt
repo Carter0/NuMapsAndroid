@@ -3,7 +3,6 @@ package com.example.numaps
 import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
@@ -21,21 +20,7 @@ import com.example.numaps.fragments.MyFilteritemRecyclerViewAdapter
  */
 class FilteritemFragment : Fragment() {
 
-    // TODO: Customize parameters
-    private var columnCount = 1
-
     private var listener: OnListFragmentInteractionListener? = null
-
-    //This initializes the variables/properties/components whatever
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-        //this is a bundle I am going to assume is passed in through the activity.
-        //I could dynamically pass in a column count if I wanted to
-        arguments?.let {
-            columnCount = it.getInt(ARG_COLUMN_COUNT)
-        }
-    }
 
     //This initializes the view. So the UI basically.
     override fun onCreateView(
@@ -47,10 +32,9 @@ class FilteritemFragment : Fragment() {
         // Set the adapter
         if (view is RecyclerView) {
             with(view) {
-                layoutManager = when {
-                    columnCount <= 1 -> LinearLayoutManager(context)
-                    else -> GridLayoutManager(context, columnCount)
-                }
+                val manager = LinearLayoutManager(context)
+                manager.orientation = LinearLayoutManager.HORIZONTAL
+                layoutManager = manager
                 adapter = MyFilteritemRecyclerViewAdapter(FilterContent.ITEMS, listener)
             }
         }
@@ -85,16 +69,13 @@ class FilteritemFragment : Fragment() {
      * for more information.
      */
     interface OnListFragmentInteractionListener {
-        // TODO: Update argument type and name
         fun onListFragmentInteraction(item: FilterItem?)
     }
 
     companion object {
 
-        // TODO: Customize parameter argument names
         const val ARG_COLUMN_COUNT = "column-count"
 
-        // TODO: Customize parameter initialization
         @JvmStatic
         fun newInstance(columnCount: Int) =
             FilteritemFragment().apply {

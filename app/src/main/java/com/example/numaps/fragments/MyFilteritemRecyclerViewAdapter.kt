@@ -16,7 +16,6 @@ import kotlinx.android.synthetic.main.fragment_filteritem.view.*
 /**
  * [RecyclerView.Adapter] that can display a [FilterItem] and makes a call to the
  * specified [OnListFragmentInteractionListener].
- * TODO: Replace the implementation with code for your data type.
  */
 class MyFilteritemRecyclerViewAdapter(
     private val mValues: List<FilterItem>,
@@ -28,8 +27,7 @@ class MyFilteritemRecyclerViewAdapter(
     init {
         mOnClickListener = View.OnClickListener { v ->
             val item = v.tag as FilterItem
-            // Notify the active callbacks interface (the activity, if the fragment is attached to
-            // one) that an item has been selected.
+            // Set up the listener for each item.
             mListener?.onListFragmentInteraction(item)
         }
     }

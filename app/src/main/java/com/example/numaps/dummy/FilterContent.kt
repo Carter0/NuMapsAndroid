@@ -1,8 +1,6 @@
 package com.example.numaps.dummy
 
-import android.util.Log
 import java.util.ArrayList
-import java.util.HashMap
 
 /**
  * Helper class for providing sample content for user interfaces created by
@@ -15,12 +13,13 @@ object FilterContent {
      */
     val ITEMS: MutableList<FilterItem> = ArrayList()
 
-    init {
-        ITEMS.add(createFilterItem("bruh"))
-        Log.d("YEET", "my info, init of FilterContent ran")
-    }
-
     private val COUNT = 25
+
+    init {
+        //Pass in the data to the filterlist.
+        val filterStrings = listOf("Food", "Parking", "Classes", "Subway")
+        createFilterItems(filterStrings).forEach { addItem(it) }
+    }
 
     private fun addItem(item: FilterItem) {
         ITEMS.add(item)
@@ -30,8 +29,8 @@ object FilterContent {
         return FilterItem(filterName)
     }
 
-    fun createFilterItems(filterNames: List<String>) {
-        filterNames.map { createFilterItem(it) }
+    private fun createFilterItems(filterNames: List<String>) : List<FilterItem> {
+        return filterNames.map { createFilterItem(it) }
     }
 
     /**
