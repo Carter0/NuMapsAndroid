@@ -3,11 +3,9 @@ package com.example.numaps
 import android.content.pm.ActivityInfo
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Toast
-import com.example.numaps.dummy.FilterContent
+import android.widget.Button
 
-
-class MapActivity : AppCompatActivity(), FilteritemFragment.OnListFragmentInteractionListener {
+class MapActivity : AppCompatActivity() {
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -15,12 +13,31 @@ class MapActivity : AppCompatActivity(), FilteritemFragment.OnListFragmentIntera
         requestedOrientation =  (ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE)
         setContentView(R.layout.activity_map)
 
-        //Make the fragment.
+        val fragmentManager = supportFragmentManager
         val filterFragment = FilteritemFragment()
-    }
 
 
-    override fun onListFragmentInteraction(item: FilterContent.FilterItem?) {
-        Toast.makeText(this, "Filter item pressed!", Toast.LENGTH_SHORT).show()
+
+        var fragmentState = false
+        val filterShowButton = findViewById<Button>(R.id.showFiltersButton)
+        filterShowButton.setOnClickListener {
+            if (!fragmentState) {
+                val fragmentTransaction = fragmentManager.beginTransaction()
+                fragmentTransaction.add(R.id.mapContainer, filterFragment)
+                fragmentState = true
+                fragmentTransaction.commit()
+            }
+        }
+
+        val filterHideButton = findViewById<Button>(R.id.hideFilters)
+        filterHideButton.setOnClickListener {
+            if (fragmentState) {
+                val fragmentTransaction2 = fragmentManager.beginTransaction()
+                fragmentTransaction2.remove(filterFragment)
+                fragmentState = false
+                fragmentTransaction2.commit()
+            }
+        }
+
     }
 }

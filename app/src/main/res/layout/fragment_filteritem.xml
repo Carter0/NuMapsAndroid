@@ -3,10 +3,11 @@
               android:layout_width="wrap_content"
               android:layout_height="wrap_content"
               android:orientation="horizontal" android:id="@+id/filterItemView">
-    <TextView
-            android:text="MyFilterItem"
+    <Button
+            android:text="Item"
             android:layout_width="0dp"
             android:gravity="center"
+            android:padding="10dp"
             android:layout_height="46dp" android:id="@+id/filterItem" android:layout_weight="1"
             android:textAlignment="center" android:textSize="22sp" android:textStyle="bold"/>
 </LinearLayout>

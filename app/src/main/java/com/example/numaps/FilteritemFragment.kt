@@ -8,9 +8,9 @@ import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 
-import com.example.numaps.dummy.FilterContent
-import com.example.numaps.dummy.FilterContent.FilterItem
+import com.example.numaps.dummy.FilterItem
 import com.example.numaps.fragments.MyFilteritemRecyclerViewAdapter
 
 /**
@@ -20,7 +20,6 @@ import com.example.numaps.fragments.MyFilteritemRecyclerViewAdapter
  */
 class FilteritemFragment : Fragment() {
 
-    private var listener: OnListFragmentInteractionListener? = null
 
     //This initializes the view. So the UI basically.
     override fun onCreateView(
@@ -35,53 +34,17 @@ class FilteritemFragment : Fragment() {
                 val manager = LinearLayoutManager(context)
                 manager.orientation = LinearLayoutManager.HORIZONTAL
                 layoutManager = manager
-                adapter = MyFilteritemRecyclerViewAdapter(FilterContent.ITEMS, listener)
+
+                val filterItems = listOf("Food", "Parking", "Classes", "Subway").map {
+                    FilterItem(it) {
+                        Toast.makeText(requireContext(), "You clicked $it", Toast.LENGTH_LONG).show()
+                    }
+                }
+
+                adapter = MyFilteritemRecyclerViewAdapter(filterItems)
             }
         }
         return view
     }
 
-    //When the fragment is first attached to the activity.
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-        if (context is OnListFragmentInteractionListener) {
-            listener = context
-        } else {
-            throw RuntimeException(context.toString() + " must implement OnListFragmentInteractionListener")
-        }
-    }
-
-    //When the fragment is detached from the activity.
-    override fun onDetach() {
-        super.onDetach()
-        listener = null
-    }
-
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     *
-     *
-     * See the Android Training lesson
-     * [Communicating with Other Fragments](http://developer.android.com/training/basics/fragments/communicating.html)
-     * for more information.
-     */
-    interface OnListFragmentInteractionListener {
-        fun onListFragmentInteraction(item: FilterItem?)
-    }
-
-    companion object {
-
-        const val ARG_COLUMN_COUNT = "column-count"
-
-        @JvmStatic
-        fun newInstance(columnCount: Int) =
-            FilteritemFragment().apply {
-                arguments = Bundle().apply {
-                    putInt(ARG_COLUMN_COUNT, columnCount)
-                }
-            }
-    }
 }

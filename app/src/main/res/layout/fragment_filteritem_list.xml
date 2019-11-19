@@ -11,5 +11,6 @@
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
         app:layoutManager="LinearLayoutManager"
+        android:padding="10dp"
         tools:context=".FilteritemFragment"
         tools:listitem="@layout/fragment_filteritem"/>

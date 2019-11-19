@@ -4,12 +4,11 @@ import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
+import android.widget.Button
 import com.example.numaps.R
 
 
-import com.example.numaps.FilteritemFragment.OnListFragmentInteractionListener
-import com.example.numaps.dummy.FilterContent.FilterItem
+import com.example.numaps.dummy.FilterItem
 
 import kotlinx.android.synthetic.main.fragment_filteritem.view.*
 
@@ -17,20 +16,13 @@ import kotlinx.android.synthetic.main.fragment_filteritem.view.*
  * [RecyclerView.Adapter] that can display a [FilterItem] and makes a call to the
  * specified [OnListFragmentInteractionListener].
  */
-class MyFilteritemRecyclerViewAdapter(
-    private val mValues: List<FilterItem>,
-    private val mListener: OnListFragmentInteractionListener?
-) : RecyclerView.Adapter<MyFilteritemRecyclerViewAdapter.ViewHolder>() {
+class MyFilteritemRecyclerViewAdapter(_values: List<FilterItem>) : RecyclerView.Adapter<ViewHolder>() {
 
-    private val mOnClickListener: View.OnClickListener
-
-    init {
-        mOnClickListener = View.OnClickListener { v ->
-            val item = v.tag as FilterItem
-            // Set up the listener for each item.
-            mListener?.onListFragmentInteraction(item)
+    var values = _values
+        set(value) {
+            notifyDataSetChanged()
+            field = value
         }
-    }
 
     //This is run whenever an item in the recyclerview needs to be "recreated".
     //Also run on start.
@@ -42,24 +34,22 @@ class MyFilteritemRecyclerViewAdapter(
 
     //Puts the contents of each filteritem in the viewholder.
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val item = mValues[position]
-        holder.mContentView.text = item.filterName
-
-        with(holder.mView) {
-            tag = item
-            setOnClickListener(mOnClickListener)
-        }
+        val item = values[position]
+        holder.bind(item)
     }
 
     //How many items are in this list.
-    override fun getItemCount(): Int = mValues.size
+    override fun getItemCount(): Int = values.size
+}
 
+class ViewHolder(mView: View) : RecyclerView.ViewHolder(mView) {
+    private val mContentView: Button = mView.filterItem
 
-    inner class ViewHolder(val mView: View) : RecyclerView.ViewHolder(mView) {
-        val mContentView: TextView = mView.filterItem
+    fun bind(filterItem: FilterItem) {
+        mContentView.text = filterItem.filterName
 
-        override fun toString(): String {
-            return super.toString() + " '" + mContentView.text + "'"
+        mContentView.setOnClickListener {
+            filterItem.onClickListener.invoke()
         }
     }
 }
