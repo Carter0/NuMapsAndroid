@@ -18,6 +18,10 @@ class MapActivity : AppCompatActivity() {
 
 
 
+        //TODO: Hides and shows the buttons.
+        //  Possible to do animation with motionlayout (subclass of constraint layout?)
+        //  Then, you can just hide and show the fragment possibly??
+        //  Can do it with fragment transactions, but not sure its the best fit.
         var fragmentState = false
         val filterShowButton = findViewById<Button>(R.id.showFiltersButton)
         filterShowButton.setOnClickListener {

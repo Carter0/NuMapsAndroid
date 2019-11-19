@@ -48,6 +48,7 @@ class ViewHolder(mView: View) : RecyclerView.ViewHolder(mView) {
     fun bind(filterItem: FilterItem) {
         mContentView.text = filterItem.filterName
 
+        //call the lambda function.
         mContentView.setOnClickListener {
             filterItem.onClickListener.invoke()
         }

@@ -12,6 +12,7 @@ import android.widget.Toast
 
 import com.example.numaps.dummy.FilterItem
 import com.example.numaps.fragments.MyFilteritemRecyclerViewAdapter
+import kotlinx.android.synthetic.main.fragment_filteritem.view.*
 
 /**
  * A fragment representing a list of Items.
@@ -36,6 +37,7 @@ class FilteritemFragment : Fragment() {
                 layoutManager = manager
 
                 val filterItems = listOf("Food", "Parking", "Classes", "Subway").map {
+                    //This is the lambda function I have made for the buttons.
                     FilterItem(it) {
                         Toast.makeText(requireContext(), "You clicked $it", Toast.LENGTH_LONG).show()
                     }
