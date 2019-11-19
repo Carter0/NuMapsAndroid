@@ -4,6 +4,7 @@ import android.content.pm.ActivityInfo
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
+import androidx.core.view.isVisible
 
 class MapActivity : AppCompatActivity() {
 
@@ -15,13 +16,9 @@ class MapActivity : AppCompatActivity() {
 
         val fragmentManager = supportFragmentManager
         val filterFragment = FilteritemFragment()
+        val filterHideButton = findViewById<Button>(R.id.hideFilters)
+        filterHideButton.isVisible = false
 
-
-
-        //TODO: Hides and shows the buttons.
-        //  Possible to do animation with motionlayout (subclass of constraint layout?)
-        //  Then, you can just hide and show the fragment possibly??
-        //  Can do it with fragment transactions, but not sure its the best fit.
         var fragmentState = false
         val filterShowButton = findViewById<Button>(R.id.showFiltersButton)
         filterShowButton.setOnClickListener {
@@ -30,16 +27,19 @@ class MapActivity : AppCompatActivity() {
                 fragmentTransaction.add(R.id.mapContainer, filterFragment)
                 fragmentState = true
                 fragmentTransaction.commit()
+                filterShowButton.isVisible = false
+                filterHideButton.isVisible = true
             }
         }
 
-        val filterHideButton = findViewById<Button>(R.id.hideFilters)
         filterHideButton.setOnClickListener {
             if (fragmentState) {
                 val fragmentTransaction2 = fragmentManager.beginTransaction()
                 fragmentTransaction2.remove(filterFragment)
                 fragmentState = false
                 fragmentTransaction2.commit()
+                filterShowButton.isVisible = true
+                filterHideButton.isVisible = false
             }
         }
 
