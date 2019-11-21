@@ -5,55 +5,57 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:screenOrientation="landscape"
+        android:screenOrientation="portrait"
         tools:context=".MapActivity"
         android:id="@+id/mapContainer">
 
 
     <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" app:srcCompat="@drawable/campus_map"
+            android:layout_width="747dp"
+            android:layout_height="916dp"
+            app:srcCompat="@drawable/campus_map2"
             android:id="@+id/map"
-            app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="8dp"
-            app:layout_constraintEnd_toEndOf="parent" android:layout_marginTop="8dp"
-            app:layout_constraintTop_toTopOf="parent" app:layout_constraintBottom_toBottomOf="parent"/>
+            android:rotation="90" app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="8dp" app:layout_constraintEnd_toEndOf="parent" android:layout_marginBottom="8dp"
+            app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintTop_toTopOf="parent"/>
     <Button
             android:text="Shawarma"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/shawarmaButton" app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginStart="608dp" android:layout_marginTop="204dp"
+            android:layout_marginStart="288dp" android:layout_marginTop="492dp"
             app:layout_constraintTop_toTopOf="parent"/>
     <Button
             android:text="Ruggles"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/rugglesButton" app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginStart="112dp" android:layout_marginTop="204dp"
+            android:layout_marginStart="16dp" android:layout_marginTop="316dp"
             app:layout_constraintTop_toTopOf="parent"/>
 
-    <fragment android:name="com.example.numaps.FilteritemFragment"
-              android:id="@+id/headlines_fragment"
-              android:layout_width="725dp"
-              android:layout_height="68dp" android:layout_marginEnd="4dp"
-              app:layout_constraintEnd_toEndOf="@+id/map"
-              app:layout_constraintTop_toTopOf="@+id/map" app:layout_constraintStart_toStartOf="parent"
-              android:layout_marginStart="8dp" app:layout_constraintHorizontal_bias="0.0"
-              android:orientation="horizontal" tools:layout="@layout/fragment_filteritem_list"/>
+    <!--<fragment android:name="com.example.numaps.FilteritemFragment"-->
+              <!--android:id="@+id/headlines_fragment"-->
+              <!--android:layout_width="725dp"-->
+              <!--android:layout_height="68dp" android:layout_marginEnd="4dp"-->
+              <!--app:layout_constraintEnd_toEndOf="@+id/map"-->
+              <!--app:layout_constraintTop_toTopOf="@+id/map" app:layout_constraintStart_toStartOf="parent"-->
+              <!--android:layout_marginStart="8dp" app:layout_constraintHorizontal_bias="0.0"-->
+              <!--android:orientation="horizontal" tools:layout="@layout/fragment_filteritem_list"/>-->
     <Button
             android:text="Show Filters"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/showFiltersButton"
             app:layout_constraintTop_toTopOf="@id/map"
-            app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="8dp"/>
+            app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="272dp"
+            android:layout_marginTop="664dp"/>
     <Button
             android:text="Hide Filters"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/hideFilters" app:layout_constraintTop_toTopOf="@+id/map"
-            app:layout_constraintEnd_toEndOf="@+id/map" android:layout_marginEnd="20dp"
-            android:layout_marginTop="80dp"/>
+            app:layout_constraintEnd_toEndOf="@+id/map" android:layout_marginEnd="452dp"
+            android:layout_marginTop="740dp"/>
 
 
     <!--<fragment android:name="com.example.numaps.DataFragment"-->

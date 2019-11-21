@@ -1,14 +1,12 @@
 package com.example.numaps
 
-import android.os.Parcel
 import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize
-import java.io.Serializable
 
 
-interface ILocation :Serializable {
-    fun getTitle()
+enum class Type {
+    FOOD, PARKING, CLASSES, TRANSPORTATION
 }
 
 @Parcelize
-data class Location(val title: String, val imageName: String, val description: String) : Parcelable
+data class Location(val title: String, val imageName: String, val description: String, val type: Type) : Parcelable

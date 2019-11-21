@@ -4,6 +4,6 @@
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#E31A63</color>
     <color name="orange">#FFA500</color>
-    <color name="lightBlue">##6ECAFF</color>
+    <color name="lightBlue">#6ECAFF</color>
 
 </resources>

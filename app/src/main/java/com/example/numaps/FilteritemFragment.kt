@@ -8,11 +8,9 @@ import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
-
 import com.example.numaps.dummy.FilterItem
 import com.example.numaps.fragments.MyFilteritemRecyclerViewAdapter
-import kotlinx.android.synthetic.main.fragment_filteritem.view.*
+
 
 /**
  * A fragment representing a list of Items.
@@ -20,6 +18,9 @@ import kotlinx.android.synthetic.main.fragment_filteritem.view.*
  * [FilteritemFragment.OnListFragmentInteractionListener] interface.
  */
 class FilteritemFragment : Fragment() {
+
+
+    private var dataPasser: OnDataPass? = null
 
 
     //This initializes the view. So the UI basically.
@@ -32,21 +33,29 @@ class FilteritemFragment : Fragment() {
         // Set the adapter
         if (view is RecyclerView) {
             with(view) {
-                val manager = LinearLayoutManager(context)
-                manager.orientation = LinearLayoutManager.HORIZONTAL
-                layoutManager = manager
-
-                val filterItems = listOf("Food", "Parking", "Classes", "Subway").map {
-                    //This is the lambda function I have made for the buttons.
-                    FilterItem(it) {
-                        Toast.makeText(requireContext(), "You clicked $it", Toast.LENGTH_LONG).show()
-                    }
-                }
-
+                layoutManager = LinearLayoutManager(context)
+                val filterItems = listOf("Food", "Subway").map { FilterItem(it) { passData(it) } }
                 adapter = MyFilteritemRecyclerViewAdapter(filterItems)
             }
         }
         return view
     }
 
+
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        dataPasser = context as OnDataPass
+    }
+
+    fun passData(data: String) {
+        dataPasser?.onDataPass(data)
+    }
+
+
+}
+
+
+interface OnDataPass {
+    fun onDataPass(data: String)
 }

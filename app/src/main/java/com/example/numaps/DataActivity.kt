@@ -7,6 +7,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.content.Intent
 import android.net.Uri
+import android.util.Log
 
 
 class DataActivity : AppCompatActivity() {
@@ -16,14 +17,17 @@ class DataActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_data)
 
+        Log.d("ONCREATE", "got into on create")
+
+
         val titleText : TextView = findViewById(R.id.titleText)
         val descriptionText : TextView = findViewById(R.id.dataDescription)
         val dataImage : ImageView = findViewById(R.id.dataImage)
         val googleButton = findViewById<Button>(R.id.googeMapsButton)
 
+
         val i = intent
         val locationObj = i.getParcelableExtra<Location>("Location")
-        //Log.d("DATA", locationObj.title)
 
 
         titleText.setText(locationObj.title)

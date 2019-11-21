@@ -17,7 +17,7 @@ class MainActivity : AppCompatActivity() {
         Log.d("YAY", resources.configuration.orientation.toString())
 
 
-        val button: Button = findViewById(R.id.enterButton)
+        val button: Button = findViewById(R.id.loginButton)
         button.setOnClickListener {
             val intent = Intent(this, MapActivity::class.java)
             startActivity(intent)
